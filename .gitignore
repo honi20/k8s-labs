@@ -1,3 +1,4 @@
 cicd/simple-web
 helm/nginxstd
 helm/prod
+cicd/simple-web-platform
