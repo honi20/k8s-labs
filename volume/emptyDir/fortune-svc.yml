@@ -1,0 +1,20 @@
+# fortune-lb.yml
+apiVersion: v1
+kind: Service
+metadata:
+  name: fortune-lb
+  # aws 연결을 위한 규칙
+  annotations:
+    # VPC 외부접속 가능
+    service.beta.kubernetes.io/aws-load-balancer-type: external
+    # 노드가 아닌 POD IP로 직접 전달
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
+    # 공인 IP 사용
+    service.beta.kubernetes.io/aws-load-balancer-scheme: internet-facing
+spec:
+  selector:
+    app: fortune
+  ports:
+    - port: 80
+      targetPort: 80
+  type: LoadBalancer
